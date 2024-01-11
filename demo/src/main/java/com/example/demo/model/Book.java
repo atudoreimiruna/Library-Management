@@ -13,16 +13,17 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users")
-public class User {
+@Table(name = "books")
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    private String username;
-    private String password;
-    private String role;
+    private String title;
+    private String author;
+    private String isbn;
+    private int quantity;
 
     @ManyToMany(mappedBy = "borrowedBooks")
-    private Set<Book> books;
+    private Set<User> users;
 }

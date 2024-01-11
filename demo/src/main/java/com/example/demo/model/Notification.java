@@ -6,23 +6,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users")
-public class User {
+@Table(name = "notifications")
+public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    private String username;
-    private String password;
-    private String role;
+    private String message;
+    private LocalDateTime timestamp;
+    private String status;
 
-    @ManyToMany(mappedBy = "borrowedBooks")
-    private Set<Book> books;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User borrowedBooks;
 }
