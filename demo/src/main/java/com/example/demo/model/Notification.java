@@ -3,10 +3,17 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.Date;
 
+@Data
+@Builder
+@AllArgsConstructor
 @Entity
+@Table(name="notification")
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

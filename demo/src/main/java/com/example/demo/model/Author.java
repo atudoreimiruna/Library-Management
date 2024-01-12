@@ -7,26 +7,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "book")
-public class Book {
+@Table(name="author")
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String isbn;
-    private int quantity;
+    private String name;
 
-    @OneToMany(mappedBy = "book")
-    private List<Borrowing> borrowing;
-
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "author")
     private List<BookAuthor> bookAuthor;
 }

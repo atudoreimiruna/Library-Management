@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "borrowings")
+@Table(name = "borrowing")
 public class Borrowing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
