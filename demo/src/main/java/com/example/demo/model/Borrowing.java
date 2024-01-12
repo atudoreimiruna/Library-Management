@@ -32,3 +32,4 @@ public class Borrowing {
     @JoinColumn(name = "user_id")
     private User user;
 }
+

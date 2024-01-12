@@ -24,6 +24,6 @@ public class Book {
     private String isbn;
     private int quantity;
 
-    @ManyToMany(mappedBy = "borrowedBooks")
+    @ManyToMany(mappedBy = "books")
     private Set<User> users;
 }
