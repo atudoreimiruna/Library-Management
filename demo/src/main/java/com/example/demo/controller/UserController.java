@@ -24,7 +24,7 @@ public class UserController {
     public String saveUser(@RequestBody User user) {
         System.out.println("User save called...");
 
-        User userIn = new User(user.getUsername(), user.getEmail());
+        User userIn = new User(user.getFirstName(), user.getLastName(), user.getEmail());
 
         List<Notification> notifications = new ArrayList<>();
         for (Notification notifIn : user.getNotifications()) {

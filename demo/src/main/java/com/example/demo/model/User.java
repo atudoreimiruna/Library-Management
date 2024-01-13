@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Builder
@@ -20,12 +19,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String firstName;
+    private String lastName;
 
-    private String username;
     @Email(message = "Please provide a valid email address")
     private String email;
-    private String password;
-    private String role;
 
     @OneToMany(mappedBy = "user")
     private List<Borrowing> borrowing;
@@ -33,13 +31,26 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Notification> notifications;
 
-    public User(String username, String email) {
-        this.username = username;
+    public User(String firstName,String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
