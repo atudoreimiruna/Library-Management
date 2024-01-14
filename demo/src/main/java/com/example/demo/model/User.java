@@ -28,9 +28,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Borrowing> borrowing;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Notification> notifications;
-
     public User(String firstName,String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;

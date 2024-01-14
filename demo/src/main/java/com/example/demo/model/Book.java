@@ -28,4 +28,8 @@ public class Book {
 
     @OneToMany(mappedBy = "book")
     private List<BookAuthor> bookAuthor;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

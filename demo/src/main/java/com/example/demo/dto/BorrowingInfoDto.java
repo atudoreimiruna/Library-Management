@@ -1,41 +1,30 @@
-package com.example.demo.model;
-
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package com.example.demo.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "borrowing")
-public class Borrowing {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class BorrowingInfoDto {
+    private Long bookId;
     private LocalDate borrowDate;
     private LocalDate returnDate;
     private BigDecimal fineAmount;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
+    public BorrowingInfoDto() {
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    public Borrowing(LocalDate borrowDate, LocalDate returnDate, BigDecimal fineAmount) {
+    public BorrowingInfoDto(Long bookId, LocalDate borrowDate, LocalDate returnDate, BigDecimal fineAmount) {
+        this.bookId = bookId;
         this.borrowDate = borrowDate;
         this.returnDate = returnDate;
         this.fineAmount = fineAmount;
+    }
+
+    public Long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
     }
 
     public LocalDate getBorrowDate() {
@@ -62,4 +51,3 @@ public class Borrowing {
         this.fineAmount = fineAmount;
     }
 }
-

@@ -5,6 +5,7 @@ import com.example.demo.model.Author;
 import com.example.demo.model.Book;
 import com.example.demo.model.BookAuthor;
 import com.example.demo.service.AuthorService;
+import com.example.demo.service.BookAuthorService;
 import com.example.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private BookAuthorService bookAuthorService;
 
     @Autowired
     private AuthorService authorService;
@@ -43,12 +47,14 @@ public class BookController {
                         .quantity(bookDto.getQuantity())
                         .build();
 
+                bookService.saveBook(book);
+
                 BookAuthor bookAuthor = new BookAuthor();
                 bookAuthor.setDateOfWriting(bookDto.getDateOfWriting());
                 bookAuthor.setBook(book);
                 bookAuthor.setAuthor(author);
 
-                bookService.saveBook(book);
+                bookAuthorService.saveBookAuthor(bookAuthor);
             }
 
             return new ResponseEntity<>("Books added successfully", HttpStatus.OK);
