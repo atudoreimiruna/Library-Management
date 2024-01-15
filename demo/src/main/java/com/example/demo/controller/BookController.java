@@ -7,6 +7,8 @@ import com.example.demo.model.BookAuthor;
 import com.example.demo.service.AuthorService;
 import com.example.demo.service.BookAuthorService;
 import com.example.demo.service.BookService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@Tag(name = "BookController")
 @RequestMapping("/api/book")
 public class BookController {
     @Autowired
@@ -30,6 +33,7 @@ public class BookController {
     private AuthorService authorService;
 
     @PostMapping("/addBooks")
+//    @Operation(summary = "", description = "")
     public ResponseEntity<String> addBooks(@RequestBody List<BookDto> bookDtoList) {
         try {
             for (BookDto bookDto : bookDtoList) {

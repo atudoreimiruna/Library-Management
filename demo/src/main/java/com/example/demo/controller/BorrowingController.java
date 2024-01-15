@@ -7,6 +7,7 @@ import com.example.demo.model.User;
 import com.example.demo.service.BookService;
 import com.example.demo.service.BorrowingService;
 import com.example.demo.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "BorrowingController")
 @RequestMapping("/api/borrowing")
 public class BorrowingController {
     @Autowired
