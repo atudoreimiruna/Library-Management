@@ -4,6 +4,7 @@ import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class UserController {
 
     @PostMapping("/saveUsers")
     @Transactional
-    public String saveUsers(@RequestBody List<User> users) {
+    public String saveUsers(@Valid @RequestBody List<User> users) {
         System.out.println("Users save called...");
 
         List<User> savedUsers = userRepository.saveAll(users);
