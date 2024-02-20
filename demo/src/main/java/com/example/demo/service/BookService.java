@@ -70,7 +70,6 @@ public class BookService {
         book.setIsbn(bookDto.getIsbn());
         book.setQuantity(bookDto.getQuantity());
 
-        // Save the book
         Book savedBook = bookRepository.save(book);
 
         return savedBook.getId();
