@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dto.AvailableBookDto;
 import com.example.demo.dto.BookDto;
+import com.example.demo.dto.BookPutDto;
 import com.example.demo.model.Author;
 import com.example.demo.model.Book;
 import com.example.demo.model.BookAuthor;
@@ -75,6 +76,23 @@ public class BookService {
         return savedBook.getId();
     }
 
+    public void deleteBookById(Long id) {
+        boolean exists = bookRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Book with id: "+ id +" doesn't exist");
+        }
+        bookRepository.deleteById(id);
+    }
+
+    public Long updateBook(BookPutDto bookDto) {
+        boolean exists = bookRepository.existsById(bookDto.getId());
+        if(!exists){
+            throw new IllegalStateException("Book with id: "+ bookDto.getId() +" doesn't exist");
+        }
+        Book newBook = mapBookDtoToBook(bookDto);
+        return bookRepository.save(newBook).getId();
+    }
+
     public Book findBookById(Long id) {
         return bookRepository.findById(id).orElse(null);
     }
@@ -104,5 +122,14 @@ public class BookService {
                         book.getQuantity()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    public Book mapBookDtoToBook(BookPutDto bookDto){
+        return Book.builder()
+                .id(bookDto.getId())
+                .title(bookDto.getTitle())
+                .isbn(bookDto.getIsbn())
+                .quantity(bookDto.getQuantity())
+                .build();
     }
 }

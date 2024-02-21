@@ -1,9 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.BookViewDto;
-import com.example.demo.dto.BorrowingDto;
-import com.example.demo.dto.UserBooksDto;
-import com.example.demo.dto.UserBorrowingDto;
+import com.example.demo.dto.*;
+import com.example.demo.model.Book;
 import com.example.demo.model.Borrowing;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
@@ -41,6 +39,23 @@ public class UserService {
                 Exception e) {
             return new ResponseEntity<>("Error adding books: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public void deleteUserById(Long id) {
+        boolean exists = userRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("User with id: "+ id +" doesn't exist");
+        }
+        userRepository.deleteById(id);
+    }
+
+    public Long updateUser(UserPutDto userDto) {
+        boolean exists = userRepository.existsById(userDto.getId());
+        if(!exists){
+            throw new IllegalStateException("User with id: "+ userDto.getId() +" doesn't exist");
+        }
+        User newUser = mapUserDtoToUser(userDto);
+        return userRepository.save(newUser).getId();
     }
 
     public User findUserById(Long id) {
@@ -84,4 +99,13 @@ public class UserService {
 
         return borrowingDto;
     }
+    public User mapUserDtoToUser(UserPutDto userDto){
+        return User.builder()
+                .id(userDto.getId())
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
+                .email(userDto.getEmail())
+                .build();
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AvailableBookDto;
 import com.example.demo.dto.BookDto;
+import com.example.demo.dto.BookPutDto;
 import com.example.demo.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,9 +37,15 @@ public class BookController {
         return new ResponseEntity<>(bookId, HttpStatus.OK);
     }
 
+    @PutMapping("/updateBook")
+    public  ResponseEntity<?> updateBook(@Valid @RequestBody BookPutDto bookDto) { return new ResponseEntity<>(bookService.updateBook(bookDto), HttpStatus.OK);}
+
     @GetMapping("/available")
     public ResponseEntity<List<AvailableBookDto>> getAvailableBooks() {
         List<AvailableBookDto> availableBooks = bookService.getAvailableBooks();
         return ResponseEntity.ok(availableBooks);
     }
+
+    @DeleteMapping("/deleteBook/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){ bookService.deleteBookById(id); return new ResponseEntity<>(HttpStatus.OK); }
 }
