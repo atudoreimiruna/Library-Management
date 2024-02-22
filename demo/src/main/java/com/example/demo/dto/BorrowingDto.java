@@ -1,52 +1,25 @@
 package com.example.demo.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BorrowingDto {
+    @NotNull
     private Long borrowingId;
     private LocalDate borrowDate;
     private LocalDate returnDate;
+    @Min(value = 0, message = "The amount has to be positive!")
     private BigDecimal fineAmount;
     private BookViewDto book;
-
-    public Long getBorrowingId() {
-        return borrowingId;
-    }
-
-    public void setBorrowingId(Long borrowingId) {
-        this.borrowingId = borrowingId;
-    }
-
-    public LocalDate getBorrowDate() {
-        return borrowDate;
-    }
-
-    public void setBorrowDate(LocalDate borrowDate) {
-        this.borrowDate = borrowDate;
-    }
-
-    public LocalDate getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(LocalDate returnDate) {
-        this.returnDate = returnDate;
-    }
-
-    public BigDecimal getFineAmount() {
-        return fineAmount;
-    }
-
-    public void setFineAmount(BigDecimal fineAmount) {
-        this.fineAmount = fineAmount;
-    }
-
-    public BookViewDto getBook() {
-        return book;
-    }
-
-    public void setBook(BookViewDto book) {
-        this.book = book;
-    }
 }

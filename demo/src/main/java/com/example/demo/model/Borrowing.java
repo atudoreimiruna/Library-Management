@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Borrowing {
 
     private LocalDate borrowDate;
     private LocalDate returnDate;
+    @Min(0)
     private BigDecimal fineAmount;
 
     @ManyToOne

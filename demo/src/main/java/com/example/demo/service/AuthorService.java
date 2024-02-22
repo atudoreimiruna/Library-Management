@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorService {
 
+    private final AuthorRepository authorRepository;
+
     @Autowired
-    private AuthorRepository authorRepository;
+    public AuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     public Author findAuthorByName(String name) {
         return authorRepository.findByName(name);

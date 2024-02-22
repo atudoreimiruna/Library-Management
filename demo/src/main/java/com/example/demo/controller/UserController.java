@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.BookPutDto;
 import com.example.demo.dto.UserBorrowingDto;
 import com.example.demo.dto.UserPutDto;
 import com.example.demo.model.User;

@@ -1,46 +1,20 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.Book;
+import com.example.demo.enums.BorrowingStatusEnum;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookViewDto {
-
     private Long bookId;
     private String title;
     private String isbn;
-
-    public BookViewDto() {
-    }
-
-    public Long getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    // convert Book entity to DTO
-    public static BookViewDto fromBook(Book book) {
-        BookViewDto dto = new BookViewDto();
-        dto.setBookId(book.getId());
-        dto.setTitle(book.getTitle());
-        dto.setIsbn(book.getIsbn());
-        return dto;
-    }
+    @NotNull
+    private BorrowingStatusEnum status;
 }

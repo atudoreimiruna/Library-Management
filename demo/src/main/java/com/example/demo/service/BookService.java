@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.dto.AvailableBookDto;
 import com.example.demo.dto.BookDto;
 import com.example.demo.dto.BookPutDto;
+import com.example.demo.enums.BorrowingStatusEnum;
+import com.example.demo.exception.BookNotFoundException;
 import com.example.demo.model.Author;
 import com.example.demo.model.Book;
 import com.example.demo.model.BookAuthor;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -79,7 +82,7 @@ public class BookService {
     public void deleteBookById(Long id) {
         boolean exists = bookRepository.existsById(id);
         if(!exists){
-            throw new IllegalStateException("Book with id: "+ id +" doesn't exist");
+            throw new BookNotFoundException();
         }
         bookRepository.deleteById(id);
     }
@@ -87,7 +90,7 @@ public class BookService {
     public Long updateBook(BookPutDto bookDto) {
         boolean exists = bookRepository.existsById(bookDto.getId());
         if(!exists){
-            throw new IllegalStateException("Book with id: "+ bookDto.getId() +" doesn't exist");
+            throw new BookNotFoundException();
         }
         Book newBook = mapBookDtoToBook(bookDto);
         return bookRepository.save(newBook).getId();
@@ -97,12 +100,18 @@ public class BookService {
         return bookRepository.findById(id).orElse(null);
     }
 
-    public List<AvailableBookDto> getAvailableBooks() {
+    public List<AvailableBookDto> getAvailableBooks(@RequestParam(required = false) BorrowingStatusEnum status) {
         LocalDate currentDate = LocalDate.now();
 
-        List<Book> availableBooks = bookRepository.findAll().stream()
-                .filter(book -> isBookAvailable(book, currentDate))
-                .collect(Collectors.toList());
+        List<Book> availableBooks;
+        if (status != null) {
+            availableBooks = bookRepository.findByStatus(status);
+            availableBooks.stream().filter(book -> isBookAvailable(book, currentDate));
+        } else {
+            availableBooks = bookRepository.findAll().stream()
+                    .filter(book -> isBookAvailable(book, currentDate))
+                    .collect(Collectors.toList());
+        }
 
         return mapToDto(availableBooks);
     }
