@@ -35,3 +35,8 @@
 
 ![image001](https://github.com/user-attachments/assets/31014d42-e830-4980-a1e8-09b6343725b4)
 
+**Entity Relationship Diagram**
+
+![image](https://github.com/user-attachments/assets/3ea3bd86-e965-47ed-977f-1707dd4c9c12)
+
+
