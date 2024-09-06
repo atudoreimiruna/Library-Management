@@ -22,10 +22,11 @@
 
 **10. Batch Operations** The application must allow batch operations for adding multiple records at once (e.g., adding multiple books, users, or borrowings), ensuring efficient bulk management for large datasets.
 
+
+**Visual documentation** 
+[openapi.json](https://github.com/user-attachments/files/16904627/openapi.json)
+
 ![CF77A3A5-CB7F-4E71-9FB7-E3A13D75594C](https://github.com/user-attachments/assets/8a502af0-b578-4a23-91ef-227e1d48bc1f)
 
 ![80936BEC-BD75-41F7-BFA3-0A2712CD8869](https://github.com/user-attachments/assets/5d79912b-6f06-4f6d-9617-d9e7216c32cf)
 
-**Visual documentation** 
-[openapi.json](https://github.com/user-attachments/files/16904627/openapi.json)
-          
