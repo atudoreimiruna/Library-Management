@@ -29,27 +29,31 @@ public class BookController {
     }
 
     @PostMapping("/addBooks")
-    @Operation(summary = "add books", description = "post method for adding a list of books")
+    @Operation(summary = "add books", description = "POST method for adding a list of books")
     public ResponseEntity<String> addBooks(@RequestBody List<BookDto> bookDtoList) {
         return bookService.addBooks(bookDtoList);
     }
 
     @PostMapping("/addBook")
+    @Operation(summary = "add book", description = "POST method for adding a book")
     public ResponseEntity<Long> addBook(@Valid @RequestBody BookDto bookDto) {
         Long bookId = bookService.addBook(bookDto);
         return new ResponseEntity<>(bookId, HttpStatus.OK);
     }
 
     @PutMapping("/updateBook")
+    @Operation(summary = "update book", description = "POST method for updating a book")
     public  ResponseEntity<?> updateBook(@Valid @RequestBody BookPutDto bookDto) { return new ResponseEntity<>(bookService.updateBook(bookDto), HttpStatus.OK);}
 
     @GetMapping("/available")
+    @Operation(summary = "get available books", description = "GET method for receiving a list of available books")
     public ResponseEntity<List<AvailableBookDto>> getAvailableBooks(@RequestParam(required = false) BorrowingStatusEnum status) {
         List<AvailableBookDto> availableBooks = bookService.getAvailableBooks(status);
         return ResponseEntity.ok(availableBooks);
     }
 
     @DeleteMapping("/deleteBook/{id}")
+    @Operation(summary = "delete book", description = "DELETE method for removing a book by id")
     public ResponseEntity<?> delete(@PathVariable Long id){ bookService.deleteBookById(id); return new ResponseEntity<>(HttpStatus.OK); }
 
     @ExceptionHandler(BookNotFoundException.class)

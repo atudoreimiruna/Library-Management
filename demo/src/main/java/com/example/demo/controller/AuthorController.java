@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AuthorDto;
 import com.example.demo.service.AuthorService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,14 @@ public class AuthorController {
     }
 
     @PostMapping("/addAuthor")
+    @Operation(summary = "add author", description = "POST method for adding an author")
     public ResponseEntity<Long> addAuthor(@Valid @RequestBody AuthorDto authorDto) {
         Long authorId = authorService.addAuthor(authorDto);
         return new ResponseEntity<>(authorId, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteAuthor/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){ authorService.deleteAuthorById(id); return new ResponseEntity<>(HttpStatus.OK); }
+    @Operation(summary = "delete author", description = "DELETE method for removing an author by id")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        authorService.deleteAuthorById(id); return new ResponseEntity<>(HttpStatus.OK); }
 }

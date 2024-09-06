@@ -26,4 +26,7 @@ public class BookDto {
     private LocalDate dateOfWriting;
     @NotNull
     private BorrowingStatusEnum status;
+
+    public BookDto(String s, String isbn1234, int i, String s1, LocalDate now) {
+    }
 }

@@ -23,13 +23,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<UserBooksDto> getAllUsersWithBorrowedBooks() {
-        List<User> users = userRepository.findAll();
-        return users.stream()
-                .map(UserBooksDto::fromUser)
-                .collect(Collectors.toList());
-    }
-
     public ResponseEntity<String> addUsers(List<User> usersList) {
         try {
             userRepository.saveAll(usersList);
@@ -99,7 +92,13 @@ public class UserService {
 
         return borrowingDto;
     }
-    public User mapUserDtoToUser(UserPutDto userDto){
+
+    private UserBooksDto fromUser(Borrowing borrowing) {
+        UserBooksDto borrowingDto = new UserBooksDto();
+        return borrowingDto;
+    }
+
+    private User mapUserDtoToUser(UserPutDto userDto){
         return User.builder()
                 .id(userDto.getId())
                 .firstName(userDto.getFirstName())

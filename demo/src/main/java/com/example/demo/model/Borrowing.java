@@ -34,12 +34,6 @@ public class Borrowing {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Borrowing(LocalDate borrowDate, LocalDate returnDate, BigDecimal fineAmount) {
-        this.borrowDate = borrowDate;
-        this.returnDate = returnDate;
-        this.fineAmount = fineAmount;
-    }
-
     public LocalDate getBorrowDate() {
         return borrowDate;
     }

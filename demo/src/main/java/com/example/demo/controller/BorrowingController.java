@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.BorrowingInfoDto;
 import com.example.demo.exception.BookBorrowedException;
 import com.example.demo.service.BorrowingService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class BorrowingController {
     }
 
     @PostMapping("/addBorrowings/{userId}")
+    @Operation(summary = "add borrowings", description = "POST method for adding a list of borrowings for an user")
     public ResponseEntity<String> addBorrowings(@PathVariable Long userId, @RequestBody List<BorrowingInfoDto> borrowingInfoList) {
         return borrowingService.addBorrowings(userId, borrowingInfoList);
     }
