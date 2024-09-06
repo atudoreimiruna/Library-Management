@@ -21,3 +21,9 @@
 **9. Fine Management** The system should include functionality to track fines associated with late returns of borrowed books. Fines must be recorded against each borrowing record and visible through the user's borrowing history.
 
 **10. Batch Operations** The application must allow batch operations for adding multiple records at once (e.g., adding multiple books, users, or borrowings), ensuring efficient bulk management for large datasets.
+
+![CF77A3A5-CB7F-4E71-9FB7-E3A13D75594C](https://github.com/user-attachments/assets/8a502af0-b578-4a23-91ef-227e1d48bc1f)
+
+![80936BEC-BD75-41F7-BFA3-0A2712CD8869](https://github.com/user-attachments/assets/5d79912b-6f06-4f6d-9617-d9e7216c32cf)
+
+
